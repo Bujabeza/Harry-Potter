@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter Kvíz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin: 0;
+        }
+        .answers {
+            margin-top: 10px;
+        }
+        .answers label {
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Harry Potter Kvíz</h1>
+    <form id="quizForm">
+        <div class="question">
+            <h3>1. Jaké je heslo do společenské místnosti Mrzimoru?</h3>
+            <div class="answers">
+                <label><input type="radio" name="q1" value="a"> a) Citronový koláč</label>
+                <label><input type="radio" name="q1" value="b"> b) Přátelství a píle</label>
+                <label><input type="radio" name="q1" value="c"> c) Odvaha a čest</label>
+                <label><input type="radio" name="q1" value="d"> d) To nikdy nebylo řečeno</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>2. Jaký je kouzelnický obchod, který vlastní rodina Lovegoodových?</h3>
+            <div class="answers">
+                <label><input type="radio" name="q2" value="a"> a) Třaskavý trhák</label>
+                <label><input type="radio" name="q2" value="b"> b) Jinotaj</label>
+                <label><input type="radio" name="q2" value="c"> c) Kouzelnické vynálezy</label>
+                <label><input type="radio" name="q2" value="d"> d) Wimbourneské noviny</label>
+            </div>
+        </div>
+        <!-- Pokračujte přidáním dalších otázek stejným způsobem -->
+        <button type="button" onclick="submitQuiz()">Odeslat</button>
+    </form>
+    <div id="result" style="margin-top: 20px; font-size: 18px;"></div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'd',
+            q2: 'b'
+            // Přidejte zde další odpovědi, například q3: 'a', q4: 'c' atd.
+        };
+
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+
+            for (const [question, answer] of Object.entries(correctAnswers)) {
+                const userAnswer = form.elements[question]?.value;
+                if (userAnswer === answer) {
+                    score++;
+                }
+            }
+
+            document.getElementById('result').innerText = `Správně jste odpověděli na ${score} z ${totalQuestions} otázek.`;
+        }
+    </script>
+</body>
+</html>
